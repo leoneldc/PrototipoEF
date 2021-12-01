@@ -10,7 +10,6 @@ import comercial.datos.GuardarBitacora;
 import dominio.ProcesosRepetidos;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import seguridad.vista.GenerarPermisos;
@@ -22,7 +21,10 @@ import seguridad.vista.Login_LD;
  */
 public class Comercial_MDI extends javax.swing.JFrame {
 
-
+    private mBancos banco;
+    private mCliente cliente;
+    private CuentaContable ct;
+    
     ProcesosRepetidos prcs_repetidos = new ProcesosRepetidos();
     public static JLabel Jl_logo = new JLabel();
     GuardarBitacora bitacora = new GuardarBitacora();
@@ -32,10 +34,10 @@ public class Comercial_MDI extends javax.swing.JFrame {
      */
     public Comercial_MDI() {
         initComponents();
-        setTitle("Usuario: " + "[" + Login_LD.usuario + "]" + " \t" + "FECHA: [" + prcs_repetidos.getFecha() + "]");
+        setTitle("Usuario: " + "[" + Login_LD.usuario + "]" + " \t" + "FECHA: [" + prcs_repetidos.getFecha() + "] [CARNE: 9959-19-5644]" );
         GenerarPermisos generarPermisos = new GenerarPermisos();
         var usuario = Login_LD.usuario;
-        var modulo = "Hotelero";
+        var modulo = "Comercial";
         generarPermisos.getPermisos(modulo, usuario);
         Diseño();
     }
@@ -43,23 +45,6 @@ public class Comercial_MDI extends javax.swing.JFrame {
     public void Diseño() {
         Jdp_contenedor.setBackground(new Color(228, 68, 68));
         prcs_repetidos.Cursor(Mnb_menu);
-        ImageIcon icono = new ImageIcon("src/main/java/assets/hotel.png");
-        this.setIconImage(icono.getImage());
-        logo();
-        Jdp_contenedor.add(Jl_logo);
-    }
-
-    public void logo() {
-        ImageIcon icon = new ImageIcon("src/main/java/assets/logo_hotel.png");
-        Jl_logo.setSize(300, 300);
-        if (icon != null) {
-            Jl_logo.setIcon(icon);
-        } else {
-            //No existe imagen.
-        }
-        Dimension desktopSize = Jdp_contenedor.getSize();
-        Dimension FrameSize = Jl_logo.getSize();
-        Jl_logo.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }
 
     /**
@@ -76,6 +61,9 @@ public class Comercial_MDI extends javax.swing.JFrame {
         Sbm_archivos = new javax.swing.JMenu();
         Sbm_catalogo = new javax.swing.JMenu();
         Mnu_mantenimientos = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         Sbm_procesos = new javax.swing.JMenu();
         Sbm_herramientas = new javax.swing.JMenu();
         Sbm_ayuda = new javax.swing.JMenu();
@@ -108,6 +96,31 @@ public class Comercial_MDI extends javax.swing.JFrame {
         Sbm_catalogo.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
 
         Mnu_mantenimientos.setText("Mantenimientos");
+
+        jMenuItem1.setText("Bancos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        Mnu_mantenimientos.add(jMenuItem1);
+
+        jMenuItem2.setText("Clientes");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        Mnu_mantenimientos.add(jMenuItem2);
+
+        jMenuItem3.setText("Cuenta Contable");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        Mnu_mantenimientos.add(jMenuItem3);
+
         Sbm_catalogo.add(Mnu_mantenimientos);
 
         Mnb_menu.add(Sbm_catalogo);
@@ -150,8 +163,44 @@ public class Comercial_MDI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        logo();
+//        logo();
     }//GEN-LAST:event_formComponentResized
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        banco = new mBancos();
+
+        Jdp_contenedor.add(banco);
+        Dimension desktopSize = Jdp_contenedor.getSize();
+        Dimension FrameSize = banco.getSize();
+        banco.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        banco.setVisible(true);
+        banco.toFront();
+        bitacora.GuardarEnBitacora("log", "2001");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        cliente = new mCliente();
+
+        Jdp_contenedor.add(cliente);
+        Dimension desktopSize = Jdp_contenedor.getSize();
+        Dimension FrameSize = cliente.getSize();
+        cliente.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        cliente.setVisible(true);
+        cliente.toFront();
+        bitacora.GuardarEnBitacora("log", "2002");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        ct = new CuentaContable();
+
+        Jdp_contenedor.add(ct);
+        Dimension desktopSize = Jdp_contenedor.getSize();
+        Dimension FrameSize = ct.getSize();
+        ct.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        ct.setVisible(true);
+        ct.toFront();
+        bitacora.GuardarEnBitacora("log", "2003");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,5 +231,8 @@ public class Comercial_MDI extends javax.swing.JFrame {
     public static javax.swing.JMenu Sbm_catalogo;
     public static javax.swing.JMenu Sbm_herramientas;
     public static javax.swing.JMenu Sbm_procesos;
+    public static javax.swing.JMenuItem jMenuItem1;
+    public static javax.swing.JMenuItem jMenuItem2;
+    public static javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }
