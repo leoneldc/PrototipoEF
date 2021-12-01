@@ -50,9 +50,9 @@ public class GenerarPermisos {
 
                 }
             }
-            
-            if (modulo == "Hotelero") {
-                
+
+            if (modulo == "Comercial") {
+
                 Comercial_MDI.Mnb_menu.setVisible(true);
                 Comercial_MDI.Sbm_archivos.setVisible(true);
                 Comercial_MDI.Sbm_ayuda.setVisible(true);
@@ -60,31 +60,36 @@ public class GenerarPermisos {
                 Comercial_MDI.Sbm_herramientas.setVisible(true);
                 Comercial_MDI.Sbm_procesos.setVisible(true);
                 Comercial_MDI.Btn_cerrarSesion.setVisible(true);
-                
+
                 Comercial_MDI.Mnu_mantenimientos.setVisible(false);
                 Comercial_MDI.Mnu_procesos.setVisible(false);
-                
-                
+
+                Comercial_MDI.jMenuItem1.setVisible(false);
+                Comercial_MDI.jMenuItem2.setVisible(false);
+                Comercial_MDI.jMenuItem3.setVisible(false);
                 
                 ejecutarPermisos.ejecutarBusqueda(usuario);
                 for (int i = 0; i < ejecutarPermisos.getAplicaciones().length; i++) {
                     int varApp = Integer.parseInt(ejecutarPermisos.getAplicaciones()[i]);
                     if (varApp >= 2001 && varApp <= 2200) {
-                                Comercial_MDI.Mnu_mantenimientos.setVisible(true);
+                        Comercial_MDI.Mnu_mantenimientos.setVisible(true);
                         switch (varApp) {
+                            case 2001:Comercial_MDI.jMenuItem1.setVisible(true);break;
+                            case 2002:Comercial_MDI.jMenuItem2.setVisible(true);break;
+                            case 2003:Comercial_MDI.jMenuItem3.setVisible(true);break;
                         }
                     }
                 }
                 for (int i = 0; i < ejecutarPermisos.getAplicaciones().length; i++) {
                     int varApp = Integer.parseInt(ejecutarPermisos.getAplicaciones()[i]);
                     if (varApp >= 2201 && varApp <= 2500) {
-                                Comercial_MDI.Mnu_procesos.setVisible(true);
+                        Comercial_MDI.Mnu_procesos.setVisible(true);
                         switch (varApp) {
                         }
                     }
                 }
             }
-            
+
         } catch (NumberFormatException ex) {
             System.out.println(ex);
         }

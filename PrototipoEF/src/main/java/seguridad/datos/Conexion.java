@@ -8,7 +8,7 @@ public class Conexion {
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/umg?allowPublicKeyRetrieval=true";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASS = "";
+    private static final String JDBC_PASS = "HLeonelDC_10";
 
 
 

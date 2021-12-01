@@ -193,7 +193,7 @@ public class Login_LD extends javax.swing.JFrame {
 
         Lbl_marca.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         Lbl_marca.setForeground(new java.awt.Color(255, 255, 255));
-        Lbl_marca.setText("Hoteleria®");
+        Lbl_marca.setText("Leonel D®");
 
         Lbl_area.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         Lbl_area.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,7 +309,7 @@ public class Login_LD extends javax.swing.JFrame {
                         }
                         break;
 
-                        case "Hoteleria":
+                        case "Comercial":
                                 try {
                             usuario = txt_usuario.getText();
                             UIManager.setLookAndFeel(new FlatLightLaf());
